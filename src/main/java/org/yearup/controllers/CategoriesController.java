@@ -2,6 +2,7 @@ package org.yearup.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -36,17 +37,14 @@ public class CategoriesController {
     }
 
     @GetMapping("/{id}")
-    public Category getById(@PathVariable int id) {
-        try {
-            Category category = categoryDao.getById(id);
-            if (category == null) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found.");
-            }
-            return category;
-        } catch (Exception ex) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... Something went wrong.", ex);
+    public ResponseEntity<Category> getById(@PathVariable int id) {
+        Category category = categoryDao.getById(id);
+        if (category == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found.");
         }
+        return ResponseEntity.ok(category);
     }
+
 
     @GetMapping("/{categoryId}/products")
     public List<Product> getProductsById(@PathVariable int categoryId) {
@@ -58,6 +56,7 @@ public class CategoriesController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Category addCategory(@RequestBody Category category) {
         try {
@@ -78,6 +77,7 @@ public class CategoriesController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(value =  HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteCategory(@PathVariable int id) {
         try {

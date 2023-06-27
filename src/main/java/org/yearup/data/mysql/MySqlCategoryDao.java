@@ -52,13 +52,14 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao {
 
             if (row.next()) {
                 return mapRow(row);
+            } else {
+                return null; // Category not found
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        return null;
     }
+
 
     @Override
     public Category create(Category category) {
@@ -76,14 +77,14 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao {
 
                 if (generatedKeys.next()) {
                     int categoryId = generatedKeys.getInt(1);
-                    return getById(categoryId);
+                    category.setCategoryId(categoryId);
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return category;
     }
 
     @Override
