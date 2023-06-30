@@ -10,7 +10,7 @@ EasyShop is an online shop application with an existing frontend. The frontend a
 
 ### Phase 1
 
-In this phase, the main focus was on implementing the following functionalities:
+In this phase, the main focus was on implementing the following methods:
 
 #### MySqlCategoryDao
 
