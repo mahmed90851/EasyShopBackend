@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MySqlCategoryDaoTest extends BaseDaoTestClass {
 
+    //This test is for the getById method in the MySqlCategoryDao class. It aims to ensure that the method retrieves the correct category from the database based on its ID.
     private MySqlCategoryDao dao;
 
     @BeforeEach

@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MySqlProductDaoTest extends BaseDaoTestClass
+
+    //This test checks if the `getById` method in the `MySqlProductDao` class works correctly. It specifically confirms that the method retrieves the right product from the database using its ID.
 {
     private MySqlProductDao dao;
 
