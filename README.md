@@ -37,7 +37,7 @@ This phase involved fixing two bugs and improving the search functionality:
 
 #### Bug 1 - Search Functionality
 
-The search functionality was not returning the expected results due to a missing clause in the SQL query. The fix involved adding the following clause to the query:
+The search function was not returning the expected results due to a missing clause in the SQL query. The fix involved adding the following clause to the query:
 
 ```
 "   AND (price <= ? OR ? = -1) " // Added to search for products within the price range.
